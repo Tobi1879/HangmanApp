@@ -3,8 +3,8 @@ package com.example.hangmanapp.model;
 import com.orm.SugarRecord;
 
 public class Settings extends SugarRecord {
-    private static int player1Setting = 1;
-    private static int player2Setting = 1;
+    private static int player1Setting;
+    private static int player2Setting;
 
     public static int getPlayer1Setting() {
         return player1Setting;

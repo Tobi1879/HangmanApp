@@ -244,6 +244,7 @@ public class GameActivity extends AppCompatActivity {
         for(int i = 0; i < letters.length; i++){
             if (letters[i].equals(letterPressed)){
                 button.setTextColor(Color.GREEN);
+                button.setBackgroundColor(Color.TRANSPARENT);
                 correctLetter = true;
                 textViewWriter(i).setText(letterPressed);
                 wonBooleans[i] = true;
@@ -257,15 +258,20 @@ public class GameActivity extends AppCompatActivity {
                     updatePicture(10);
                 } else if (Settings.getPlayer1Setting() == 3){
                     updatePicture(5);
+                } else {
+                    updatePicture(10);
                 }
             } else if (mode == 2){
                 if(Settings.getPlayer2Setting() == 1){
                     updatePicture(10);
                 } else if (Settings.getPlayer2Setting() == 2){
                     updatePicture(5);
+                } else {
+                    updatePicture(10);
                 }
             }
             button.setTextColor(Color.RED);
+            button.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 

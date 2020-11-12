@@ -54,19 +54,19 @@
                     android:id="@+id/radioButtonEasy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Easy (10 mistakes & 6-10 letters)" />
+                    android:text="Easy (10 mistakes and 6-10 letters)" />
 
                 <RadioButton
                     android:id="@+id/radioButtonMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Medium (10 mistakes & 11-15 letters)" />
+                    android:text="Medium (10 mistakes and 11-15 letters)" />
 
                 <RadioButton
                     android:id="@+id/radioButtonHard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hard (5 mistakes & 11-15 letters)" />
+                    android:text="Hard (5 mistakes and 11-15 letters)" />
             </RadioGroup>
 
             <Space
@@ -86,13 +86,13 @@
                 android:layout_height="match_parent" >
 
                 <RadioButton
-                    android:id="@+id/radioButton5Mistakes"
+                    android:id="@+id/radioButton10Mistakes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="10 mistakes allowed" />
 
                 <RadioButton
-                    android:id="@+id/radioButton10Mistakes"
+                    android:id="@+id/radioButton5Mistakes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="5 mistakes allowed" />
@@ -103,7 +103,7 @@
                 android:id="@+id/buttonExit"
                 android:layout_width="match_parent"
                 android:layout_height="99dp"
-                android:text="Save & Exit"
+                android:text="Save and Exit"
                 android:textSize="30dp" />
         </LinearLayout>
 

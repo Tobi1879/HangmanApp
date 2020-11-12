@@ -2,6 +2,7 @@ package com.example.hangmanapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,32 +38,42 @@ public class DifficultySettingsActivity extends AppCompatActivity {
         buttonExit= (Button) findViewById(R.id.buttonExit);
 
         switch (Settings.getPlayer1Setting()){
-            case(1) : {
+            case 1 :
                 radioButtonEasy.setChecked(Boolean.TRUE);
-            }
-            case(2) : {
+                break;
+            case 2 :
                 radioButtonMedium.setChecked(Boolean.TRUE);
-            }
-            case(3) : {
+                break;
+            case 3 :
                 radioButtonHard.setChecked(Boolean.TRUE);
-            }
+                break;
+            default:
+                radioButtonEasy.setChecked(Boolean.TRUE);
         }
 
         switch (Settings.getPlayer2Setting()){
-            case(1) : {
+            case 1 :
                 radioButton10Mistakes.setChecked(Boolean.TRUE);
-            }
-            case(2) : {
+                break;
+            case 2 :
                 radioButton5Mistakes.setChecked(Boolean.TRUE);
-            }
+                break;
+            default:
+                radioButton10Mistakes.setChecked(Boolean.TRUE);
         }
 
         buttonExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateSettings();
+                doOpenMenu();
             }
         });
+    }
+
+    private void doOpenMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void updateSettings(){
