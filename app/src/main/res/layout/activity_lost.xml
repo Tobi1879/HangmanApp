@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LostActivity"
+    android:background="@drawable/haeuschenbackground">
+
+    <ImageView
+        android:id="@+id/imageViewGamePictureLost"
+        android:layout_width="412dp"
+        android:layout_height="414dp"
+        app:srcCompat="@drawable/hangmangamepicturelosttransparent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-3dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="1dp">
+
+        <TextView
+            android:id="@+id/textViewWon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You Lost!"
+            android:textAlignment="center"
+            android:textColor="#FF0000"
+            android:textSize="72sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/buttonRestartLost"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:text="Restart"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/buttonExitGameLost"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:text="Exit Game"
+            android:textSize="30dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
