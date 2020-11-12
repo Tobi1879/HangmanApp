@@ -47,6 +47,7 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
+                android:id="@+id/radioGroup1Player"
                 android:layout_height="match_parent" >
 
                 <RadioButton
@@ -81,6 +82,7 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
+                android:id="@+id/radioGroup2Players"
                 android:layout_height="match_parent" >
 
                 <RadioButton

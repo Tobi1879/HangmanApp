@@ -43,6 +43,7 @@ public class ChooseWordActivity extends AppCompatActivity {
     private void doOpenGameActivity() {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("EXTRA_WORD", editTextWord.getText().toString());
+        intent.putExtra("EXTRA_MODE", 2);
         startActivity(intent);
     }
 }

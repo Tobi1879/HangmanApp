@@ -15,8 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hangmanapp.model.Settings;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Set;
 
 public class GameActivity extends AppCompatActivity {
     String word;
@@ -69,6 +72,8 @@ public class GameActivity extends AppCompatActivity {
     Button buttonZ;
 
     ImageView imageViewGamePicture;
+
+    int mode;
 
     int errors;
 
@@ -174,6 +179,7 @@ public class GameActivity extends AppCompatActivity {
         setClickListener(buttonY, "Y");
         setClickListener(buttonZ, "Z");
 
+        mode = getIntent().getIntExtra("EXTRA_MODE", 2);
         word = getIntent().getStringExtra("EXTRA_WORD");
         word = word.toUpperCase();
         letters = word.split("(?!^)");
@@ -246,7 +252,19 @@ public class GameActivity extends AppCompatActivity {
         }
         if (!correctLetter){
             errors++;
-            updatePicture();
+            if (mode == 1){
+                if(Settings.getPlayer1Setting() == 1 || Settings.getPlayer1Setting() == 2){
+                    updatePicture(10);
+                } else if (Settings.getPlayer1Setting() == 3){
+                    updatePicture(5);
+                }
+            } else if (mode == 2){
+                if(Settings.getPlayer2Setting() == 1){
+                    updatePicture(10);
+                } else if (Settings.getPlayer2Setting() == 2){
+                    updatePicture(5);
+                }
+            }
             button.setTextColor(Color.RED);
         }
     }
@@ -264,28 +282,43 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void updatePicture() {
-        if(errors == 1){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture1transparent);
-        } else if(errors == 2){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture2transparent);
-        } else if(errors == 3){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture3transparent);
-        } else if(errors == 4){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture4transparent);
-        } else if(errors == 5){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture5transparent);
-        } else if(errors == 6){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture6transparent);
-        } else if(errors == 7){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture7transparent);
-        } else if(errors == 8){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture8transparent);
-        } else if(errors == 9){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture9transparent);
-        } else if(errors == 10){
-            imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture10transparent);
-            lost();
+    private void updatePicture(int value) {
+        if (value == 10) {
+            if (errors == 1) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture1transparent);
+            } else if (errors == 2) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture2transparent);
+            } else if (errors == 3) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture3transparent);
+            } else if (errors == 4) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture4transparent);
+            } else if (errors == 5) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture5transparent);
+            } else if (errors == 6) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture6transparent);
+            } else if (errors == 7) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture7transparent);
+            } else if (errors == 8) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture8transparent);
+            } else if (errors == 9) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture9transparent);
+            } else if (errors == 10) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture10transparent);
+                lost();
+            }
+        } else if (value == 5){
+            if (errors == 1) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture5transparent);
+            } else if (errors == 2) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture6transparent);
+            } else if (errors == 3) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture8transparent);
+            } else if (errors == 4) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture9transparent);
+            } else if (errors == 5) {
+                imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture10transparent);
+                lost();
+            }
         }
     }
 
