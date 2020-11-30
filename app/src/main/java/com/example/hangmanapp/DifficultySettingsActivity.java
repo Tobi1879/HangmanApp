@@ -3,13 +3,12 @@ package com.example.hangmanapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import com.example.hangmanapp.model.Settings;
 
 public class DifficultySettingsActivity extends AppCompatActivity {
     RadioGroup radioGroup1Player;
@@ -36,8 +35,9 @@ public class DifficultySettingsActivity extends AppCompatActivity {
         radioButton10Mistakes = (RadioButton) findViewById(R.id.radioButton10Mistakes);
 
         buttonExit= (Button) findViewById(R.id.buttonExit);
-
-        switch (Settings.getPlayer1Setting()){
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
+        switch (pref.getInt("1Player", 1)){
             case 1 :
                 radioButtonEasy.setChecked(Boolean.TRUE);
                 break;
@@ -51,7 +51,7 @@ public class DifficultySettingsActivity extends AppCompatActivity {
                 radioButtonEasy.setChecked(Boolean.TRUE);
         }
 
-        switch (Settings.getPlayer2Setting()){
+        switch (pref.getInt("2Players", 1)){
             case 1 :
                 radioButton10Mistakes.setChecked(Boolean.TRUE);
                 break;
@@ -77,18 +77,21 @@ public class DifficultySettingsActivity extends AppCompatActivity {
     }
 
     public void updateSettings(){
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
         if(radioButtonEasy.isChecked()){
-            Settings.setPlayer1Setting(1);
+            editor.putInt("1Player", 1);
         } else if(radioButtonMedium.isChecked()){
-            Settings.setPlayer1Setting(2);
+            editor.putInt("1Player", 2);
         } else if(radioButtonHard.isChecked()){
-            Settings.setPlayer1Setting(3);
+            editor.putInt("1Player", 3);
         }
 
         if(radioButton10Mistakes.isChecked()){
-            Settings.setPlayer2Setting(1);
+            editor.putInt("2Players", 1);
         } else if(radioButton5Mistakes.isChecked()){
-            Settings.setPlayer2Setting(2);
+            editor.putInt("2Players", 2);
         }
+        editor.commit();
     }
 }

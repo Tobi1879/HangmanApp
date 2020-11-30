@@ -3,6 +3,7 @@ package com.example.hangmanapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,15 +12,10 @@ import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.hangmanapp.model.Settings;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Set;
 
 public class GameActivity extends AppCompatActivity {
     String word;
@@ -240,7 +236,8 @@ public class GameActivity extends AppCompatActivity {
     private void doLetterClick(Button button, String letterPressed) {
         button.setClickable(false);
         Boolean correctLetter = false;
-
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
         for(int i = 0; i < letters.length; i++){
             if (letters[i].equals(letterPressed)){
                 button.setTextColor(Color.GREEN);
@@ -254,17 +251,17 @@ public class GameActivity extends AppCompatActivity {
         if (!correctLetter){
             errors++;
             if (mode == 1){
-                if(Settings.getPlayer1Setting() == 1 || Settings.getPlayer1Setting() == 2){
+                if(pref.getInt("1Player", 1) == 1 || pref.getInt("1Player", 1) == 2){
                     updatePicture(10);
-                } else if (Settings.getPlayer1Setting() == 3){
+                } else if (pref.getInt("1Player", 1) == 3){
                     updatePicture(5);
                 } else {
                     updatePicture(10);
                 }
             } else if (mode == 2){
-                if(Settings.getPlayer2Setting() == 1){
+                if(pref.getInt("2Players", 1) == 1){
                     updatePicture(10);
-                } else if (Settings.getPlayer2Setting() == 2){
+                } else if (pref.getInt("2Players", 1) == 2){
                     updatePicture(5);
                 } else {
                     updatePicture(10);
@@ -284,6 +281,7 @@ public class GameActivity extends AppCompatActivity {
         }
         if (won){
             Intent intent = new Intent(this, WonActivity.class);
+            intent.putExtra("EXTRA_MODE", 1);
             startActivity(intent);
         }
     }
@@ -330,6 +328,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void lost() {
         Intent intent = new Intent(this, LostActivity.class);
+        intent.putExtra("EXTRA_MODE", 2);
+        intent.putExtra("EXTRA_WORD", word);
         startActivity(intent);
     }
 
