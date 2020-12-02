@@ -17,7 +17,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.hangmanapp.MainActivity.WORD_LIST;
 
 public class SinglePlayerWordPicker extends AppCompatActivity {
-    public String wordPicker(SharedPreferences pref){
+    public static String wordPicker(SharedPreferences pref){
         Set<String> wordList = pref.getStringSet("wordList", null);
         List<String> removeList = new ArrayList();
 

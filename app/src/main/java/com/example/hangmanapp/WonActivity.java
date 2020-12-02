@@ -56,8 +56,7 @@ public class WonActivity extends AppCompatActivity {
     private void doOpenGameActivity() {
         System.out.println("in");
         final SharedPreferences pref = getSharedPreferences("Settings", MODE_PRIVATE);
-        SinglePlayerWordPicker singlePlayerWordPicker = new SinglePlayerWordPicker();
-        String word = singlePlayerWordPicker.wordPicker(pref);
+        String word = SinglePlayerWordPicker.wordPicker(pref);
 
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("EXTRA_WORD", word);
