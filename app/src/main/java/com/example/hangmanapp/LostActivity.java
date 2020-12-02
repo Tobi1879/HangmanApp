@@ -29,13 +29,11 @@ public class LostActivity extends AppCompatActivity {
         buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getIntent().getIntExtra("EXTRA_MODE", 2) == 1){
-                    doOpenGameActivity();
-                    // get Word
-                } else {
-                    doOpenChooseWord();
-                    // get Word
-                }
+            if (getIntent().getIntExtra("EXTRA_MODE", 2) == 1){
+                doOpenGameActivity();
+            } else {
+                doOpenChooseWord();
+            }
             }
         });
     }
@@ -53,7 +51,8 @@ public class LostActivity extends AppCompatActivity {
     private void doOpenGameActivity() {
         System.out.println("in");
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
-        String word = SinglePlayerWordPicker.wordPicker(pref);
+        SinglePlayerWordPicker singlePlayerWordPicker = new SinglePlayerWordPicker();
+        String word = singlePlayerWordPicker.wordPicker(pref);
 
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("EXTRA_WORD", word);

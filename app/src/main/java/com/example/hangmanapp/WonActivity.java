@@ -2,10 +2,14 @@ package com.example.hangmanapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import java.net.ConnectException;
 
 public class WonActivity extends AppCompatActivity {
     Button buttonExitGame;
@@ -28,7 +32,13 @@ public class WonActivity extends AppCompatActivity {
         buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if (getIntent().getIntExtra("EXTRA_MODE", 2) == 1){
+                doOpenGameActivity();
+                // get Word
+            } else {
                 doOpenChooseWord();
+                // get Word
+            }
             }
         });
     }
@@ -40,6 +50,18 @@ public class WonActivity extends AppCompatActivity {
 
     private void doOpenMain() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void doOpenGameActivity() {
+        System.out.println("in");
+        final SharedPreferences pref = getSharedPreferences("Settings", MODE_PRIVATE);
+        SinglePlayerWordPicker singlePlayerWordPicker = new SinglePlayerWordPicker();
+        String word = singlePlayerWordPicker.wordPicker(pref);
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("EXTRA_WORD", word);
+        intent.putExtra("EXTRA_MODE", 1);
         startActivity(intent);
     }
 }

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:includeFontPadding="false"
-            android:text="Enter a word with a maximum of 15 letters."
+            android:text="Enter a word between 5 and 15 letters "
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="40dp" />
