@@ -238,12 +238,17 @@ public class GameActivity extends AppCompatActivity {
         Boolean correctLetter = false;
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
         final SharedPreferences.Editor editor = pref.edit();
+
+        // loop durch Wort und schauen on ein Buchstabe übereinstimmt
+        // letters[] Wort als Array mit einzelnen Buchstaben
         for(int i = 0; i < letters.length; i++){
             if (letters[i].equals(letterPressed)){
                 button.setTextColor(Color.GREEN);
                 button.setBackgroundColor(Color.TRANSPARENT);
                 correctLetter = true;
                 textViewWriter(i).setText(letterPressed);
+
+                // Array der beinhaltet, ob einzelne Buchstaben schon erraten worden sind
                 wonBooleans[i] = true;
                 checkIfWon();
             }
@@ -280,6 +285,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
         if (won){
+            // gewonnen
             Intent intent = new Intent(this, WonActivity.class);
             intent.putExtra("EXTRA_MODE", 1);
             startActivity(intent);
@@ -308,6 +314,7 @@ public class GameActivity extends AppCompatActivity {
                 imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture9transparent);
             } else if (errors == 10) {
                 imageViewGamePicture.setImageResource(R.drawable.hangmangamepicture10transparent);
+                // verloren
                 lost();
             }
         } else if (value == 5){

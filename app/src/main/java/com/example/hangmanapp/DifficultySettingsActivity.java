@@ -37,6 +37,8 @@ public class DifficultySettingsActivity extends AppCompatActivity {
         buttonExit= (Button) findViewById(R.id.buttonExit);
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
         final SharedPreferences.Editor editor = pref.edit();
+
+        // "Getter"
         switch (pref.getInt("1Player", 1)){
             case 1 :
                 radioButtonEasy.setChecked(Boolean.TRUE);
